@@ -1,4 +1,5 @@
 import math
+import numpy as pn
 
 class Perceptron:
     def __init__(self):
