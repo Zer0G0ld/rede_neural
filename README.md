@@ -2,6 +2,7 @@
 
 ## Instalando o numpy no termux
 <p>Tente isso:</p>
+
 ```
 pkg install libcrypt-dev
 pkg install numpy
