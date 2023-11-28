@@ -1,5 +1,13 @@
 # rede_neural
 
+## Instalando dependencias
+
+```
+
+pip install -r requirements.txt
+
+```
+
 ## Instalando o numpy no termux
 <p>Tente isso:</p>
 

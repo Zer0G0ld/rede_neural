@@ -1,35 +1,30 @@
 import math
-import numpy as pn
+import numpy as np
 
 class Perceptron:
-    def __init__(self):
-        self.input_value = 1
-        self.input_weight = 0.5
+    def __init__(self, input_size):
+        self.input_values = np.ones(input_size) # Assuming bias is included in input
+        self.input_weights = np.random.rand(input_size)
         self.output_desire = 0
         self.learning_rate = 0.1
-        self.error = math.inf
-        self.bias = 1
-        self.bias_weight = 0.5
+        self.error = np.inf
 
     def activation(self, value):
-        if value >= 0:
-            return 1
-        else:
-            return 0
+        return 1 if value >=0 else 0
 
-perceptron = Perceptron()
+perceptron = Perceptron(input_size=2) # Assuming two input values
 
 iteration = 0
 
-print("Entrada: ", perceptron.input_value, "desejado: ", perceptron.output_desire)
+print("Entrada: ", perceptron.input_values, "desejado: ", perceptron.output_desire)
 
-while not perceptron.error == 0:
+while not np.array_equal(perceptron.error, np.zeros_like(perceptron.error)):
     iteration += 1
 
     print("####### Interação: ", iteration)
-    print("Peso: ", perceptron.input_weight)
+    print("Peso: ", perceptron.input_weights)
 
-    _sum = (perceptron.input_value * perceptron.input_weight) + (perceptron.bias * perceptron.bias_weight)
+    _sum = np.dot(perceptron.input_values, perceptron.input_weights)
     output = perceptron.activation(_sum)
 
     print("Saída: ", output)
@@ -38,9 +33,8 @@ while not perceptron.error == 0:
 
     print("Erro: ", perceptron.error)
 
-    if not perceptron.error == 0:
-        perceptron.input_weight = perceptron.input_weight + (perceptron.learning_rate * perceptron.input_value * perceptron.error)
-        perceptron.bias_weight = perceptron.bias_weight + (perceptron.learning_rate * perceptron.bias * perceptron.error)
+    if not np.array_equal(perceptron.error, np.zeros_like(perceptron.error)):
+        perceptron.input_weights = perceptron.input_weights + (perceptron.learning_rate * perceptron.input_values * perceptron.error)
 
 print("PARABÉNS!!! A REDE APRENDEU")
 
